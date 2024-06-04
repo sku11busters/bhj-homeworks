@@ -5,25 +5,22 @@ const form = document.getElementById('tasks__form');
 form.addEventListener('submit', e => {
     if(taskInput.value) {
         e.preventDefault();
-        const newTask = document.createElement('div');
-        newTask.classList.add('task');
 
-        const newTaskTitle = document.createElement('div');
-        newTaskTitle.classList.add('task__title');
-        newTaskTitle.textContent = taskInput.value;
-
-        const removeButton = document.createElement('a');
-        removeButton.classList.add('task__remove');
-        removeButton.innerHTML = '&times;';
-
-        removeButton.addEventListener('click', () => {
-            newTask.remove();
-        });
-
-        newTask.appendChild(newTaskTitle);
-        newTask.appendChild(removeButton);
-        taskList.appendChild(newTask);
+        taskList.insertAdjacentHTML('afterbegin', `
+            <div class="task">
+            <div class="task__title">
+                ${taskInput.value}
+            </div>
+            <a href="#" class="task__remove">&times;</a>
+            </div>
+        `);
 
         taskInput.value = '';
+    }
+});
+
+document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('task__remove')) {
+        e.target.closest('.task').remove();
     }
 });
