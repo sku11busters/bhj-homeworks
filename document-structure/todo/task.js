@@ -5,8 +5,6 @@ const form = document.getElementById('tasks__form');
 form.addEventListener('submit', e => {
     e.preventDefault();
     if(taskInput.value.trim().length > 0) {
-        e.preventDefault();
-
         taskList.insertAdjacentHTML('afterbegin', `
             <div class="task">
             <div class="task__title">
