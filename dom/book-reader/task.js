@@ -8,18 +8,13 @@ buttons.forEach(button => {
 
         button.classList.add('font-size_active');
 
-        const size = button.getAttribute('data-size');
         const book = document.getElementById('book');
 
-        if(size === 'small') {
-            book.classList.remove('book_fs-big');
-            book.classList.add('book_fs-small');
-        } else if(size === 'big') {
-            book.classList.remove('book_fs-small');
-            book.classList.add('book_fs-big');
-        } else {
-            book.classList.remove('book_fs-small');
-            book.classList.remove('book_fs-big');
+        book.classList.remove('book_fs-small', 'book_fs-big');
+        const size = e.target.dataset.size;
+
+        if (size) {
+            book.classList.add(`book_fs-${size}`);
         }
     })
 })
